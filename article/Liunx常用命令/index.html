@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [Liunx] 基本命令 - DrunkBlue | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Your-Knight.com/article/Liunx常用命令/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                            
+                        </div>
+                        <h1>[Liunx] 基本命令</h1>
+                        <h2 class="subheading">Liunx基本命令</h2>
+                        <span class="meta">
+                            Posted by DrunkBlue on
+                            2017-09-18
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DrunkBlue</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="一-基本命令">一 基本命令</h1>
+<h2 id="11-关机和重启">1.1 关机和重启</h2>
+<p>关机<br>
+shutdown -h now        立刻关机<br>
+shutdown -h 5        5分钟后关机<br>
+poweroff            立刻关机<br>
+重启<br>
+shutdown -r now        立刻重启<br>
+shutdown -r 5        5分钟后重启<br>
+reboot                立刻重启</p>
+<h2 id="12-帮助命令">1.2 帮助命令</h2>
+<p>–help命令<br>
+shutdown --help：<br>
+ifconfig  --help：查看网卡信息</p>
+<p>man命令（命令说明书）<br>
+man shutdown<br>
+注意：man shutdown打开命令说明书之后，使用按键q退出</p>
+<h1 id="二-目录操作命令">二、目录操作命令</h1>
+<h2 id="21-目录切换-cd">2.1 目录切换 cd</h2>
+<p>命令：cd 目录</p>
+<p>cd /     切换到根目录<br>
+cd /usr     切换到根目录下的usr目录<br>
+cd …/     切换到上一级目录 或者  cd …<br>
+cd ~     切换到home目录<br>
+cd -     切换到上次访问的目录</p>
+<h2 id="22-目录查看-ls-al">2.2  目录查看 ls [-al]</h2>
+<p>命令：ls [-al]</p>
+<p>ls                查看当前目录下的所有目录和文件<br>
+ls -a            查看当前目录下的所有目录和文件（包括隐藏的文件）<br>
+ls -l 或 ll       列表查看当前目录下的所有目录和文件（列表查看，显示更多信息）<br>
+ls /dir            查看指定目录下的所有目录和文件   如：ls /usr</p>
+<h2 id="目录操作增删改查">目录操作【增，删，改，查】</h2>
+<h3 id="创建目录增-mkdir">创建目录【增】 mkdir</h3>
+<p>命令：mkdir 目录</p>
+<p>mkdir    aaa            在当前目录下创建一个名为aaa的目录<br>
+mkdir    /usr/aaa    在指定目录下创建一个名为aaa的目录</p>
+<h3 id="232-删除目录或文件删rm">2.3.2 删除目录或文件【删】rm</h3>
+<p>命令：rm [-rf] 目录</p>
+<p>删除文件：<br>
+rm 文件        删除当前目录下的文件<br>
+rm -f 文件    删除当前目录的的文件（不询问）</p>
+<p>删除目录：<br>
+rm -r aaa    递归删除当前目录下的aaa目录<br>
+rm -rf aaa    递归删除当前目录下的aaa目录（不询问）</p>
+<p>全部删除：<br>
+rm -rf *    将当前目录下的所有目录和文件全部删除<br>
+rm -rf /*    【自杀命令！慎用！慎用！慎用！】将根目录下的所有文件全部删除</p>
+<p>注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了方便大家的记忆，无论删除任何目录或文件，都直接使用 rm -rf 目录/文件/压缩包</p>
+<h3 id="233-目录修改改mv-和-cp">2.3.3 目录修改【改】mv 和 cp</h3>
+<h4 id="一-重命名目录">一、重命名目录</h4>
+<p>​    命令：mv 当前目录  新目录<br>
+​    例如：mv aaa bbb    将目录aaa改为bbb<br>
+​    注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行    重命名的操作</p>
+<h4 id="二-剪切目录">二、剪切目录</h4>
+<p>​    命令：mv 目录名称 目录的新位置<br>
+​    示例：将/usr/tmp目录下的aaa目录剪切到 /usr目录下面     mv /usr/tmp/aaa /usr<br>
+​    注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作</p>
+<h4 id="三-拷贝目录">三、拷贝目录</h4>
+<p>​    命令：cp -r 目录名称 目录拷贝的目标位置   -r代表递归<br>
+​    示例：将/usr/tmp目录下的aaa目录复制到 /usr目录下面     cp /usr/tmp/aaa  /usr<br>
+​    注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不    用写-r递归</p>
+<h3 id="234-搜索目录查find">2.3.4 搜索目录【查】find</h3>
+<p>命令：find 目录 参数 文件名称<br>
+示例：find /usr/tmp -name ‘a*’    查找/usr/tmp目录下的所有以a开头的目录或文件</p>
+<h1 id="三-文件操作命令">三、文件操作命令</h1>
+<h2 id="31-文件操作增删改查">3.1 文件操作【增，删，改，查】</h2>
+<h3 id="311-新建文件增touch">3.1.1 新建文件【增】touch</h3>
+<p>命令：touch 文件名<br>
+示例：在当前目录创建一个名为aa.txt的文件        touch  aa.txt</p>
+<h3 id="312-删除文件-删-rm">3.1.2 删除文件 【删】 rm</h3>
+<p>命令：rm -rf 文件名</p>
+<h3 id="313-修改文件改-vi或vim">3.1.3 修改文件【改】 vi或vim</h3>
+<p>【vi编辑器的3种模式】<br>
+基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：</p>
+<ol>
+<li>
+<p>命令行模式command mode）<br>
+控制屏幕光标的移动，字符、字或行的删除，查找，移动复制某区段及进入Insert mode下，或者到 last line mode。<br>
+命令行模式下的常用命令：<br>
+【1】控制光标移动：↑，↓，j<br>
+【2】删除当前行：dd<br>
+【3】查找：/字符<br>
+【4】进入编辑模式：i o a<br>
+【5】进入底行模式：:</p>
+</li>
+<li>
+<p>编辑模式（Insert mode）<br>
+只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。<br>
+编辑模式下常用命令：<br>
+【1】ESC 退出编辑模式到命令行模式；</p>
+</li>
+<li>
+<p>底行模式（last line mode）<br>
+将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。<br>
+底行模式下常用命令：<br>
+【1】退出编辑：   :q<br>
+【2】强制退出：   :q!<br>
+【3】保存并退出：  :wq</p>
+</li>
+</ol>
+<p>打开文件</p>
+<p>命令：vi 文件名<br>
+示例：打开当前目录下的aa.txt文件     vi aa.txt 或者 vim aa.txt</p>
+<p>注意：使用vi编辑器打开文件后，并不能编辑，因为此时处于命令模式，点击键盘i/a/o进入编辑模式。</p>
+<p>编辑文件</p>
+<p>使用vi编辑器打开文件后点击按键：i ，a或者o即可进入编辑模式。</p>
+<p>i:在光标所在字符前开始插入<br>
+a:在光标所在字符后开始插入<br>
+o:在光标所在行的下面另起一新行插入</p>
+<p>保存或者取消编辑</p>
+<p>保存文件：</p>
+<p>第一步：ESC  进入命令行模式<br>
+第二步：:     进入底行模式<br>
+第三步：wq     保存并退出编辑</p>
+<p>取消编辑：</p>
+<p>第一步：ESC  进入命令行模式<br>
+第二步：:     进入底行模式<br>
+第三步：q!     撤销本次修改并退出编辑3.1.4 文件的查看【查】<br>
+文件的查看命令：cat/more/less/tail</p>
+<p>cat：看最后一屏</p>
+<p>示例：使用cat查看/etc/sudo.conf文件，只能显示最后一屏内容<br>
+cat sudo.conf</p>
+<p>more：百分比显示</p>
+<p>示例：使用more查看/etc/sudo.conf文件，可以显示百分比，回车可以向下一行，空格可以向下一页，q可以退出查看<br>
+more sudo.conf</p>
+<p>less：翻页查看</p>
+<p>示例：使用less查看/etc/sudo.conf文件，可以使用键盘上的PgUp和PgDn向上    和向下翻页，q结束查看<br>
+less sudo.conf</p>
+<p>tail：指定行数或者动态查看</p>
+<p>示例：使用tail -10 查看/etc/sudo.conf文件的后10行，Ctrl+C结束<br>
+tail -10 sudo.conf</p>
+<h2 id="32-权限修改">3.2 权限修改</h2>
+<p>rwx：r代表可读，w代表可写，x代表该文件是一个可执行文件，如果rwx任意位置变为-则代表不可读或不可写或不可执行文件。</p>
+<p>示例：给aaa.txt文件权限改为可执行文件权限，aaa.txt文件的权限是-rw-------</p>
+<p>第一位：-就代表是文件，d代表是文件夹<br>
+第一段（3位）：代表拥有者的权限<br>
+第二段（3位）：代表拥有者所在的组，组员的权限<br>
+第三段（最后3位）：代表的是其他用户的权限</p>
+<p>421  421  421</p>
+<ul>
+<li>rw-   —     —</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">命令：chmod +x aaa.txt</span><br><span class="line">或者采用8421法</span><br><span class="line">命令：chmod 100 aaa.txt</span><br></pre></td></tr></table></figure>
+<h1 id="四-压缩文件操作">四、压缩文件操作</h1>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/ElasticSearch第一天/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme HuWeihuang">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-基本命令"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一 基本命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#11-关机和重启"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.1 关机和重启</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#12-帮助命令"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">1.2 帮助命令</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二-目录操作命令"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二、目录操作命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#21-目录切换-cd"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2.1 目录切换 cd</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#22-目录查看-ls-al"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.2  目录查看 ls [-al]</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#目录操作增删改查"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">目录操作【增，删，改，查】</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建目录增-mkdir"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">创建目录【增】 mkdir</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#232-删除目录或文件删rm"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">2.3.2 删除目录或文件【删】rm</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#233-目录修改改mv-和-cp"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">2.3.3 目录修改【改】mv 和 cp</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-重命名目录"><span class="toc-nav-number">2.3.3.1.</span> <span class="toc-nav-text">一、重命名目录</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-剪切目录"><span class="toc-nav-number">2.3.3.2.</span> <span class="toc-nav-text">二、剪切目录</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-拷贝目录"><span class="toc-nav-number">2.3.3.3.</span> <span class="toc-nav-text">三、拷贝目录</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#234-搜索目录查find"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">2.3.4 搜索目录【查】find</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#三-文件操作命令"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">三、文件操作命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#31-文件操作增删改查"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">3.1 文件操作【增，删，改，查】</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#311-新建文件增touch"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">3.1.1 新建文件【增】touch</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#312-删除文件-删-rm"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">3.1.2 删除文件 【删】 rm</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#313-修改文件改-vi或vim"><span class="toc-nav-number">3.1.3.</span> <span class="toc-nav-text">3.1.3 修改文件【改】 vi或vim</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#32-权限修改"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">3.2 权限修改</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#四-压缩文件操作"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">四、压缩文件操作</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Your-Knight">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DrunkBlue 2021 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="https://github.com/Your-Knight">DrunkBlue</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Your-Knight.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

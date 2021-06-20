@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          分布式调用链系统概述 - DrunkBlue | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://Your-Knight.com/分布式/第一课：调用链系统概述与底层逻辑/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_bg.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
+                            
+                        </div>
+                        <h1>分布式调用链系统概述</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by DrunkBlue on
+                            2021-04-07
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DrunkBlue</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="一-分布式调用链系统概述"><strong>一、分布式调用链系统概述</strong></h2>
+<hr>
+<h3 id="讲个找bug的故事"><strong>讲个找BUG的故事：</strong></h3>
+<p>客户打电话给客服说：“优惠券使用不了”。<br>
+客服告诉运营人员<br>
+运营打电话给技术负责人<br>
+技术负责人通知会员系统开发人员<br>
+会员找到营销系统开发人员<br>
+营销系统开发人员找到DBA<br>
+DBA找到运维人员<br>
+运维人员找到机房负责人<br>
+机房负责人找到一只老鼠 ，因为就是它把网线咬断了。</p>
+<p><strong>分布式|微服务架构所带来的问题</strong><br>
+定位一个问题怎么会如此复杂？竟然动用了公司一半以上的职能部门。但其实这只是当我系统变成分布式之后，当我们把服务进行细粒度的拆份之后的一小部分问题，更多问题在哪里？比如：</p>
+<ol>
+<li>开发成本会增加。</li>
+<li>测试成本增加。</li>
+<li>产品迭代周期将变长。</li>
+<li>运维成本增加。</li>
+</ol>
+<p><strong>产生这些问题的原因是什么</strong><br>
+这是为什么？这跟我们的了解不一样呀，<br>
+在我们固有的认知里面，社会化分工越精细，专业化程度越高，产能就越高么？<br>
+一台汽车平均将近3万个零部件，来自全球各个供应商。你可能会说,汽车这种大物件太复杂了，一家公司搞不定，必须协作。那我们就说一个小的，一次性打火机不复杂吧，在浙江温州 有一个打火机村，一个小小的打火机生产，是由20多个厂家协作完成，有的做打火机燃料有的做点火器。<br>
+好，我们在反观软件行业， 你见过哪家某个系统是由十几家企业协作完成的么？你觉得淘宝的电商系统可以让日本人去开发 购物车模块、让法国人实现评论模块、让印度人去实现下单功能、美国人实现商品模块，最后在由中国人拼装整合，可能嘛？</p>
+<p>我想一下原因 其实就是在于三个字：“标准化”，在刚说的汽车3万个零件，每个都有其标准化规格，所以才能够顺利的拼装成品，但软件你能标准化至表格这么细么，我们连开发个接口都没有指定标准。接口命名、参数、结构等没有指定的标准，最多就是一个规范。</p>
+<p>没有标准化，不能分工协作，那怎么实现软件的大规模生产呢？管理办法升级加工具升级，管理办法是类似于敏捿开发、工程师文化建设、开发形为准则。另外一个就是工具：像自动化构建、自动化部署、自动化运维、自动化扩容等、线上监控等。还有调用链追踪都属于工具</p>
+<h3 id="调用链追踪工具的作用"><strong>调用链追踪工具的作用</strong></h3>
+<p>分析业务实现<br>
+分析用例的性能瓶颈<br>
+决策支持<br>
+定位线上问题</p>
+<h3 id="大厂的调用链系统发展史"><strong>大厂的调用链系统发展史</strong></h3>
+<ul>
+<li>Dapper</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/Euetw7TAkbYwOHTQ.png!thumbnail" alt="图片"><br>
+关于Dapper论文链接：<a href="https://www.jianshu.com/p/7c719a75df8c" target="_blank" rel="noopener">https://www.jianshu.com/p/7c719a75df8c</a></p>
+<ul>
+<li>鹰眼</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/5QiN3PsIAxA57fAL.png!thumbnail" alt="图片"></p>
+<ul>
+<li>skywalking</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/XHAtbtnJcvwx4Lxx.png!thumbnail" alt="图片"></p>
+<ul>
+<li>pinpoint</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/jc3JP1DQCs49ot8H.png!thumbnail" alt="图片"></p>
+<h3 id="图灵调用链项目演示">图灵调用链项目演示：</h3>
+<ul>
+<li>[ ] 基本功能</li>
+<li>[ ] 细节功能</li>
+<li>[ ] 搜索功能</li>
+</ul>
+<h2 id="二-调用链系统的底层实现逻辑">二、调用链系统的底层实现逻辑</h2>
+<hr>
+<h3 id="1-核心概念事件">1、核心概念：事件</h3>
+<p><strong>一次网络请求的完整过程：</strong><br>
+一张网页，要经历怎样的过程，才能抵达用户面前? 其可分为三个层面</p>
+<ol>
+<li>网络通信传输层</li>
+<li>负载均衡层</li>
+<li>系统服务层</li>
+</ol>
+<ul>
+<li>网络传输层</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/TjGydHNXI1E7H0q2/image.png!thumbnail" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 该命令可直接跟踪网络通信所经过的节点</span><br><span class="line">tracert www.baidu.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>负载均衡层</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/ruKbhtfflnsc8S8a/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>系统服务层</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/Xty9hqqwD9soM1Mn/image.png!thumbnail" alt="图片"></p>
+<p>传统的APM(应用性能管理系统)系统关注于前两个层面，而现在的调用链追踪系统则测重于对系统服务层面性能及可用性进行进行追踪监控。其本质上就是用来回答以下问题:</p>
+<ol>
+<li>什么时间？</li>
+<li>在什么节点上？</li>
+<li>发生了什么事件？</li>
+<li>这个事件由谁触发？</li>
+</ol>
+<p>所以调用链系统的核心概念即是事件。关于事件及其属性说明如下：<br>
+**事件：**请求处理过程当中的具体动作如：WEB 请求、方法调用、SQL执行、远程调用、消息发送。<br>
+**节点：**请求所经过的系统节点，即事件的空间属性。如：应用系统、数据库实例、缓存节点、外部服务等<br>
+**时间：**事件的开始和结束时间<br>
+**关系：**事件与上一个事件关系<br>
+**触发:  **可以是用户触发、定时器触发、远程调用触发<br>
+<img src="https://uploader.shimo.im/f/jlTaAerw9i4WSjQl.png!thumbnail" alt="图片"></p>
+<p>思考题：一次Http请求事件 包含哪些具体属性及子事件。</p>
+<h3 id="2-事件捕捉"><strong>2、事件捕捉</strong></h3>
+<p>我们如何采集这些事件的数据呢？采集数据的方式即为<strong>事件捕捉</strong>，有已下四种方式：</p>
+<ol>
+<li>硬编码埋点捕捉</li>
+<li>AOP埋点捕捉</li>
+<li>公共组件埋点捕捉</li>
+<li>字节码插桩捕捉</li>
+</ol>
+<h3 id="3-事件串联"><strong>3、事件串联</strong></h3>
+<p>如果只给你一断SQL 而不给出这段SQL的调用上下文，基于此你做出的判断是非常有限的，无法得知SQL是哪个用例触发的？什么时候触发的。避免单个事件独立存在，就需要我们把事物进行串联:</p>
+<ol>
+<li>所有事件都关联到同一个调用。</li>
+<li>事件与子事件基于层级关展现。</li>
+</ol>
+<p>为了到达这两个目的地，几乎所有的调用链系统都会有以下两个属性：<br>
+**traceID:**在整个系统中唯一，该值相同的事件表示同一次调用。<br>
+**eventID:**在一次调用中唯一、并展出事件的层级关系</p>
+<p><img src="https://uploader.shimo.im/f/asNktmaQNAEEuMJf.png!thumbnail" alt="图片"><br>
+其串联的实现过程如下：</p>
+<ol>
+<li>在调用的初始事件生成 TraceId 与EventId 并保存于ThreadLocal</li>
+<li>当下一个事件发生的时候 直接从ThredLocal取出 TraceId  与EventId进行自增并保存。</li>
+<li>有时事件是跨节点的，这时就需要在远程调用的时候一并将TraceID 与EventId 一并传送过去并保存自ThreadLocal。</li>
+</ol>
+<p><img src="https://images-cdn.shimo.im/6CqOOHDgovIvuhap/image.png!thumbnail" alt="图片"></p>
+<p>trackId与eventId 基于远程调用的传递</p>
+<p><img src="https://images-cdn.shimo.im/oLeC7AetvY0djP0p/image.png!thumbnail" alt="图片"></p>
+<h3 id="4-事件的开始与结束"><strong>4、事件的开始与结束</strong></h3>
+<p>我们知道一个事件是一个时间段内系统执行的若干动作，所以对于事件捕捉必须包含开启监听和结束监听两个动作？如果一个事件在一个方法内完成的，这个问题是比较好解决的，我们只要在方法的开始创建一个Event对象，在方法结束时调用该对像的close 方法即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void addUser()&#123;</span><br><span class="line">  // 方法的开始处，开启一个监听</span><br><span class="line">  Event event=new Event();</span><br><span class="line">    //业务代码执行</span><br><span class="line">    .....</span><br><span class="line">    </span><br><span class="line">    .....</span><br><span class="line">  // 方法的结束处，关闭一个监听</span><br><span class="line">  event.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但如果一个事件的开始和结束触发分布在多个对象或方法当中，情况就会变得异常复杂。<br>
+比如一个JDBC执行事件，应该是在构建 Statement 时开始，在Statement 关闭时结束。怎样把这两个触发动作对应到同一个事件当中去呢（即传递Event对象）？在这里的解决办法是对返回结果进行动态代理，把Event放置到代理对象的属性当中，以达到付递的目标。当这个方法只是适应JDBC这一个场景，其它场景需要重新设计Event 传递路径，目前还没有通用的解决办法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// JDBC事件开始</span><br><span class="line">Connection.prepareStatement(String sql);</span><br><span class="line">//JDBC 事件结束</span><br><span class="line">PreparedStatement.close();</span><br></pre></td></tr></table></figure>
+<h2 id="三-项目部署与启动"><strong>三、项目部署与启动</strong></h2>
+<hr>
+<p><strong>概要：</strong></p>
+<ol>
+<li>项目整体架构介绍</li>
+<li>项目工程结构介绍</li>
+<li>项目部署启动演示</li>
+</ol>
+<ol>
+<li>项目整体架构介绍</li>
+</ol>
+<p><strong>架构目标：</strong></p>
+<ol>
+<li>基本功能：实现监控数据采集上报与展示</li>
+<li>可扩展性**：**能够非常轻松灵活的添加新的采集器</li>
+<li>可运维：Agent自动更新、异常日志输出</li>
+</ol>
+<p><strong>基本功能</strong><br>
+<img src="https://uploader.shimo.im/f/MI105ylJAyk91nQb.png!thumbnail" alt="图片"></p>
+<p>全局架构说明：</p>
+<ol>
+<li>监听器基于埋点采集，接口、SQL、Servlet等响应信息</li>
+<li>采集的数据基于后台线程 以Http的方式发送至监控中心</li>
+<li>监控中心实时上传至ElasticSearch</li>
+<li>可视化展示调用链详情</li>
+</ol>
+<p><strong>可扩展性：</strong><br>
+插件机制、灵活自定义扩展，其过程见下图。<br>
+<img src="https://images-cdn.shimo.im/1OSHFxxpKQcNtlq0/image.png!thumbnail" alt="图片"></p>
+<p><strong>可运维:</strong><br>
+插件自动更新.</p>
+<h3 id><img src="https://images-cdn.shimo.im/ozlsVUkkObM9wtzP/image.png!thumbnail" alt="图片"></h3>
+<h3 id="2-项目工程结构介绍">2、项目工程结构介绍</h3>
+<p>项目整体分为两个工程：<br>
+1、Agent 工程：<br>
+git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent</a><br>
+**2、**server 工程：<br>
+git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-service" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-service</a><br>
+项目依懒：mysql、ElasticSearch</p>
+<p>Agent项目工程结构：<br>
+<img src="https://images-cdn.shimo.im/Cyb6tuUNppAz5nbg/image.png!thumbnail" alt="图片"></p>
+<h3 id="3项目部署启动演示">3.项目部署启动演示</h3>
+<ul>
+<li>[ ] 启动服务端</li>
+<li>[ ] 启动测试客户端</li>
+</ul>
+<p><strong>调用链Agent 如何部署:</strong></p>
+<ol>
+<li>从源码中心<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent/src/master/bin/agent.zip" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent/src/master/bin/agent.zip下载agent.zip</a> 至应用系统</li>
+<li>解压缩 agent.zip</li>
+<li>添加jvm 参数 -javaagent: &lt;cbt-agent-bootstrap-1.0-SNAPSHOT.jar 路径&gt;</li>
+<li>重启应用,观察你的应用日志，如果发现以下日志代表启动成功了</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[2018-06-12:10:32:42]加载藏宝图配置文件来自G:\git\cbt-agent\out\conf\cbt.properties</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务登陆成功!</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务启动成功!</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/ElasticSearch第一天/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme HuWeihuang">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Your-Knight">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DrunkBlue 2021 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="https://github.com/Your-Knight">DrunkBlue</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://Your-Knight.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
