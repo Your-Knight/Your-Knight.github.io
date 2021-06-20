@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -212,151 +212,57 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="一-基本命令">一 基本命令</h1>
-<h2 id="11-关机和重启">1.1 关机和重启</h2>
-<p>关机<br>
-shutdown -h now        立刻关机<br>
-shutdown -h 5        5分钟后关机<br>
-poweroff            立刻关机<br>
-重启<br>
-shutdown -r now        立刻重启<br>
-shutdown -r 5        5分钟后重启<br>
-reboot                立刻重启</p>
-<h2 id="12-帮助命令">1.2 帮助命令</h2>
-<p>–help命令<br>
-shutdown --help：<br>
-ifconfig  --help：查看网卡信息</p>
-<p>man命令（命令说明书）<br>
-man shutdown<br>
-注意：man shutdown打开命令说明书之后，使用按键q退出</p>
-<h1 id="二-目录操作命令">二、目录操作命令</h1>
-<h2 id="21-目录切换-cd">2.1 目录切换 cd</h2>
-<p>命令：cd 目录</p>
-<p>cd /     切换到根目录<br>
-cd /usr     切换到根目录下的usr目录<br>
-cd …/     切换到上一级目录 或者  cd …<br>
-cd ~     切换到home目录<br>
-cd -     切换到上次访问的目录</p>
-<h2 id="22-目录查看-ls-al">2.2  目录查看 ls [-al]</h2>
-<p>命令：ls [-al]</p>
-<p>ls                查看当前目录下的所有目录和文件<br>
-ls -a            查看当前目录下的所有目录和文件（包括隐藏的文件）<br>
-ls -l 或 ll       列表查看当前目录下的所有目录和文件（列表查看，显示更多信息）<br>
-ls /dir            查看指定目录下的所有目录和文件   如：ls /usr</p>
-<h2 id="目录操作增删改查">目录操作【增，删，改，查】</h2>
-<h3 id="创建目录增-mkdir">创建目录【增】 mkdir</h3>
-<p>命令：mkdir 目录</p>
-<p>mkdir    aaa            在当前目录下创建一个名为aaa的目录<br>
-mkdir    /usr/aaa    在指定目录下创建一个名为aaa的目录</p>
-<h3 id="232-删除目录或文件删rm">2.3.2 删除目录或文件【删】rm</h3>
-<p>命令：rm [-rf] 目录</p>
-<p>删除文件：<br>
-rm 文件        删除当前目录下的文件<br>
-rm -f 文件    删除当前目录的的文件（不询问）</p>
-<p>删除目录：<br>
-rm -r aaa    递归删除当前目录下的aaa目录<br>
-rm -rf aaa    递归删除当前目录下的aaa目录（不询问）</p>
-<p>全部删除：<br>
-rm -rf *    将当前目录下的所有目录和文件全部删除<br>
-rm -rf /*    【自杀命令！慎用！慎用！慎用！】将根目录下的所有文件全部删除</p>
+                <h1 id="一-基本命令"><a href="#一-基本命令" class="headerlink" title="一 基本命令"></a>一 基本命令</h1><h2 id="11-关机和重启"><a href="#1-1-关机和重启" class="headerlink" title="1.1 关机和重启"></a>1.1 关机和重启</h2><p>关机<br>    shutdown -h now        立刻关机<br>    shutdown -h 5        5分钟后关机<br>    poweroff            立刻关机<br>重启<br>    shutdown -r now        立刻重启<br>    shutdown -r 5        5分钟后重启<br>    reboot                立刻重启</p>
+<h2 id="12-帮助命令"><a href="#1-2-帮助命令" class="headerlink" title="1.2 帮助命令"></a>1.2 帮助命令</h2><p>—help命令<br> shutdown —help：<br> ifconfig  —help：查看网卡信息</p>
+<p>man命令（命令说明书）<br> man shutdown<br> 注意：man shutdown打开命令说明书之后，使用按键q退出</p>
+<h1 id="二-目录操作命令"><a href="#二、目录操作命令" class="headerlink" title="二、目录操作命令"></a>二、目录操作命令</h1><h2 id="21-目录切换-cd"><a href="#2-1-目录切换-cd" class="headerlink" title="2.1 目录切换 cd"></a>2.1 目录切换 cd</h2><p>命令：cd 目录</p>
+<p>cd /     切换到根目录<br>cd /usr     切换到根目录下的usr目录<br>cd ../     切换到上一级目录 或者  cd ..<br>cd ~     切换到home目录<br>cd -     切换到上次访问的目录</p>
+<h2 id="22-目录查看-ls-al"><a href="#2-2-目录查看-ls-al" class="headerlink" title="2.2  目录查看 ls [-al]"></a>2.2  目录查看 ls [-al]</h2><p>命令：ls [-al]</p>
+<p>ls                查看当前目录下的所有目录和文件<br>ls -a            查看当前目录下的所有目录和文件（包括隐藏的文件）<br>ls -l 或 ll       列表查看当前目录下的所有目录和文件（列表查看，显示更多信息）<br>ls /dir            查看指定目录下的所有目录和文件   如：ls /usr</p>
+<h2 id="目录操作增删改查"><a href="#目录操作【增，删，改，查】" class="headerlink" title="目录操作【增，删，改，查】"></a>目录操作【增，删，改，查】</h2><h3 id="创建目录增-mkdir"><a href="#创建目录【增】-mkdir" class="headerlink" title="创建目录【增】 mkdir"></a>创建目录【增】 mkdir</h3><p>命令：mkdir 目录</p>
+<p>mkdir    aaa            在当前目录下创建一个名为aaa的目录<br>mkdir    /usr/aaa    在指定目录下创建一个名为aaa的目录</p>
+<h3 id="232-删除目录或文件删rm"><a href="#2-3-2-删除目录或文件【删】rm" class="headerlink" title="2.3.2 删除目录或文件【删】rm"></a>2.3.2 删除目录或文件【删】rm</h3><p>命令：rm [-rf] 目录</p>
+<p>删除文件：<br>rm 文件        删除当前目录下的文件<br>rm -f 文件    删除当前目录的的文件（不询问）</p>
+<p>删除目录：<br>rm -r aaa    递归删除当前目录下的aaa目录<br>rm -rf aaa    递归删除当前目录下的aaa目录（不询问）</p>
+<p>全部删除：<br>rm -rf <em>    将当前目录下的所有目录和文件全部删除<br>rm -rf /</em>    【自杀命令！慎用！慎用！慎用！】将根目录下的所有文件全部删除</p>
 <p>注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了方便大家的记忆，无论删除任何目录或文件，都直接使用 rm -rf 目录/文件/压缩包</p>
-<h3 id="233-目录修改改mv-和-cp">2.3.3 目录修改【改】mv 和 cp</h3>
-<h4 id="一-重命名目录">一、重命名目录</h4>
-<p>​    命令：mv 当前目录  新目录<br>
-​    例如：mv aaa bbb    将目录aaa改为bbb<br>
-​    注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行    重命名的操作</p>
-<h4 id="二-剪切目录">二、剪切目录</h4>
-<p>​    命令：mv 目录名称 目录的新位置<br>
-​    示例：将/usr/tmp目录下的aaa目录剪切到 /usr目录下面     mv /usr/tmp/aaa /usr<br>
-​    注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作</p>
-<h4 id="三-拷贝目录">三、拷贝目录</h4>
-<p>​    命令：cp -r 目录名称 目录拷贝的目标位置   -r代表递归<br>
-​    示例：将/usr/tmp目录下的aaa目录复制到 /usr目录下面     cp /usr/tmp/aaa  /usr<br>
-​    注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不    用写-r递归</p>
-<h3 id="234-搜索目录查find">2.3.4 搜索目录【查】find</h3>
-<p>命令：find 目录 参数 文件名称<br>
-示例：find /usr/tmp -name ‘a*’    查找/usr/tmp目录下的所有以a开头的目录或文件</p>
-<h1 id="三-文件操作命令">三、文件操作命令</h1>
-<h2 id="31-文件操作增删改查">3.1 文件操作【增，删，改，查】</h2>
-<h3 id="311-新建文件增touch">3.1.1 新建文件【增】touch</h3>
-<p>命令：touch 文件名<br>
-示例：在当前目录创建一个名为aa.txt的文件        touch  aa.txt</p>
-<h3 id="312-删除文件-删-rm">3.1.2 删除文件 【删】 rm</h3>
-<p>命令：rm -rf 文件名</p>
-<h3 id="313-修改文件改-vi或vim">3.1.3 修改文件【改】 vi或vim</h3>
-<p>【vi编辑器的3种模式】<br>
-基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：</p>
-<ol>
-<li>
-<p>命令行模式command mode）<br>
-控制屏幕光标的移动，字符、字或行的删除，查找，移动复制某区段及进入Insert mode下，或者到 last line mode。<br>
-命令行模式下的常用命令：<br>
-【1】控制光标移动：↑，↓，j<br>
-【2】删除当前行：dd<br>
-【3】查找：/字符<br>
-【4】进入编辑模式：i o a<br>
-【5】进入底行模式：:</p>
-</li>
-<li>
-<p>编辑模式（Insert mode）<br>
-只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。<br>
-编辑模式下常用命令：<br>
-【1】ESC 退出编辑模式到命令行模式；</p>
-</li>
-<li>
-<p>底行模式（last line mode）<br>
-将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。<br>
-底行模式下常用命令：<br>
-【1】退出编辑：   :q<br>
-【2】强制退出：   :q!<br>
-【3】保存并退出：  :wq</p>
-</li>
-</ol>
+<h3 id="233-目录修改改mv-和-cp"><a href="#2-3-3-目录修改【改】mv-和-cp" class="headerlink" title="2.3.3 目录修改【改】mv 和 cp"></a>2.3.3 目录修改【改】mv 和 cp</h3><h4 id="一-重命名目录"><a href="#一、重命名目录" class="headerlink" title="一、重命名目录"></a>一、重命名目录</h4><p>​    命令：mv 当前目录  新目录<br>​    例如：mv aaa bbb    将目录aaa改为bbb<br>​    注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行    重命名的操作</p>
+<h4 id="二-剪切目录"><a href="#二、剪切目录" class="headerlink" title="二、剪切目录"></a>二、剪切目录</h4><p>​    命令：mv 目录名称 目录的新位置<br>​    示例：将/usr/tmp目录下的aaa目录剪切到 /usr目录下面     mv /usr/tmp/aaa /usr<br>​    注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作</p>
+<h4 id="三-拷贝目录"><a href="#三、拷贝目录" class="headerlink" title="三、拷贝目录"></a>三、拷贝目录</h4><p>​    命令：cp -r 目录名称 目录拷贝的目标位置   -r代表递归<br>​    示例：将/usr/tmp目录下的aaa目录复制到 /usr目录下面     cp /usr/tmp/aaa  /usr<br>​    注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不    用写-r递归</p>
+<h3 id="234-搜索目录查find"><a href="#2-3-4-搜索目录【查】find" class="headerlink" title="2.3.4 搜索目录【查】find"></a>2.3.4 搜索目录【查】find</h3><p>命令：find 目录 参数 文件名称<br>示例：find /usr/tmp -name ‘a*’    查找/usr/tmp目录下的所有以a开头的目录或文件</p>
+<h1 id="三-文件操作命令"><a href="#三、文件操作命令" class="headerlink" title="三、文件操作命令"></a>三、文件操作命令</h1><h2 id="31-文件操作增删改查"><a href="#3-1-文件操作【增，删，改，查】" class="headerlink" title="3.1 文件操作【增，删，改，查】"></a>3.1 文件操作【增，删，改，查】</h2><h3 id="311-新建文件增touch"><a href="#3-1-1-新建文件【增】touch" class="headerlink" title="3.1.1 新建文件【增】touch"></a>3.1.1 新建文件【增】touch</h3><p>命令：touch 文件名<br>示例：在当前目录创建一个名为aa.txt的文件        touch  aa.txt</p>
+<h3 id="312-删除文件-删-rm"><a href="#3-1-2-删除文件-【删】-rm" class="headerlink" title="3.1.2 删除文件 【删】 rm"></a>3.1.2 删除文件 【删】 rm</h3><p>命令：rm -rf 文件名</p>
+<h3 id="313-修改文件改-vi或vim"><a href="#3-1-3-修改文件【改】-vi或vim" class="headerlink" title="3.1.3 修改文件【改】 vi或vim"></a>3.1.3 修改文件【改】 vi或vim</h3><p>【vi编辑器的3种模式】<br>    基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：<br>1) 命令行模式command mode）<br>      控制屏幕光标的移动，字符、字或行的删除，查找，移动复制某区段及进入Insert mode下，或者到 last line mode。<br>      命令行模式下的常用命令：<br>      【1】控制光标移动：↑，↓，j<br>      【2】删除当前行：dd<br>      【3】查找：/字符<br>      【4】进入编辑模式：i o a<br>      【5】进入底行模式：:</p>
+<p>2) 编辑模式（Insert mode）<br>      只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。<br>      编辑模式下常用命令：<br>      【1】ESC 退出编辑模式到命令行模式；</p>
+<p>3) 底行模式（last line mode）<br>     将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。<br>     底行模式下常用命令：<br>     【1】退出编辑：   :q<br>     【2】强制退出：   :q!<br>     【3】保存并退出：  :wq</p>
 <p>打开文件</p>
-<p>命令：vi 文件名<br>
-示例：打开当前目录下的aa.txt文件     vi aa.txt 或者 vim aa.txt</p>
+<p>命令：vi 文件名<br>示例：打开当前目录下的aa.txt文件     vi aa.txt 或者 vim aa.txt</p>
 <p>注意：使用vi编辑器打开文件后，并不能编辑，因为此时处于命令模式，点击键盘i/a/o进入编辑模式。</p>
 <p>编辑文件</p>
 <p>使用vi编辑器打开文件后点击按键：i ，a或者o即可进入编辑模式。</p>
-<p>i:在光标所在字符前开始插入<br>
-a:在光标所在字符后开始插入<br>
-o:在光标所在行的下面另起一新行插入</p>
+<p>i:在光标所在字符前开始插入<br>a:在光标所在字符后开始插入<br>o:在光标所在行的下面另起一新行插入</p>
 <p>保存或者取消编辑</p>
 <p>保存文件：</p>
-<p>第一步：ESC  进入命令行模式<br>
-第二步：:     进入底行模式<br>
-第三步：wq     保存并退出编辑</p>
+<p>第一步：ESC  进入命令行模式<br>第二步：:     进入底行模式<br>第三步：wq     保存并退出编辑</p>
 <p>取消编辑：</p>
-<p>第一步：ESC  进入命令行模式<br>
-第二步：:     进入底行模式<br>
-第三步：q!     撤销本次修改并退出编辑3.1.4 文件的查看【查】<br>
-文件的查看命令：cat/more/less/tail</p>
+<p>第一步：ESC  进入命令行模式<br>第二步：:     进入底行模式<br>第三步：q!     撤销本次修改并退出编辑3.1.4 文件的查看【查】<br>文件的查看命令：cat/more/less/tail</p>
 <p>cat：看最后一屏</p>
-<p>示例：使用cat查看/etc/sudo.conf文件，只能显示最后一屏内容<br>
-cat sudo.conf</p>
+<p>示例：使用cat查看/etc/sudo.conf文件，只能显示最后一屏内容<br>cat sudo.conf</p>
 <p>more：百分比显示</p>
-<p>示例：使用more查看/etc/sudo.conf文件，可以显示百分比，回车可以向下一行，空格可以向下一页，q可以退出查看<br>
-more sudo.conf</p>
+<p>示例：使用more查看/etc/sudo.conf文件，可以显示百分比，回车可以向下一行，空格可以向下一页，q可以退出查看<br>more sudo.conf</p>
 <p>less：翻页查看</p>
-<p>示例：使用less查看/etc/sudo.conf文件，可以使用键盘上的PgUp和PgDn向上    和向下翻页，q结束查看<br>
-less sudo.conf</p>
+<p>示例：使用less查看/etc/sudo.conf文件，可以使用键盘上的PgUp和PgDn向上    和向下翻页，q结束查看<br>less sudo.conf</p>
 <p>tail：指定行数或者动态查看</p>
-<p>示例：使用tail -10 查看/etc/sudo.conf文件的后10行，Ctrl+C结束<br>
-tail -10 sudo.conf</p>
-<h2 id="32-权限修改">3.2 权限修改</h2>
-<p>rwx：r代表可读，w代表可写，x代表该文件是一个可执行文件，如果rwx任意位置变为-则代表不可读或不可写或不可执行文件。</p>
-<p>示例：给aaa.txt文件权限改为可执行文件权限，aaa.txt文件的权限是-rw-------</p>
-<p>第一位：-就代表是文件，d代表是文件夹<br>
-第一段（3位）：代表拥有者的权限<br>
-第二段（3位）：代表拥有者所在的组，组员的权限<br>
-第三段（最后3位）：代表的是其他用户的权限</p>
-<p>421  421  421</p>
+<p>示例：使用tail -10 查看/etc/sudo.conf文件的后10行，Ctrl+C结束<br>tail -10 sudo.conf</p>
+<h2 id="32-权限修改"><a href="#3-2-权限修改" class="headerlink" title="3.2 权限修改"></a>3.2 权限修改</h2><p>rwx：r代表可读，w代表可写，x代表该文件是一个可执行文件，如果rwx任意位置变为-则代表不可读或不可写或不可执行文件。</p>
+<p>示例：给aaa.txt文件权限改为可执行文件权限，aaa.txt文件的权限是-rw———-</p>
+<p>第一位：-就代表是文件，d代表是文件夹<br>第一段（3位）：代表拥有者的权限<br>第二段（3位）：代表拥有者所在的组，组员的权限<br>第三段（最后3位）：代表的是其他用户的权限</p>
+<p>   421  421  421</p>
 <ul>
-<li>rw-   —     —</li>
+<li>rw-   —-     —-</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">命令：chmod +x aaa.txt</span><br><span class="line">或者采用8421法</span><br><span class="line">命令：chmod 100 aaa.txt</span><br></pre></td></tr></table></figure>
-<h1 id="四-压缩文件操作">四、压缩文件操作</h1>
-
+<h1 id="四-压缩文件操作"><a href="#四、压缩文件操作" class="headerlink" title="四、压缩文件操作"></a>四、压缩文件操作</h1>
                 
 
                 <hr>
@@ -670,21 +576,6 @@ tail -10 sudo.conf</p>
 <img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

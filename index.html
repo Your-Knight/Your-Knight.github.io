@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -249,19 +249,8 @@ Qu......
         </h3>
         <div class="post-content-preview">
             一、分布式调用链系统概述
-
-讲个找BUG的故事：
-客户打电话给客服说：“优惠券使用不了”。
-客服告诉运营人员
-运营打电话给技术负责人
-技术负责人通知会员系统开发人员
-会员找到营销系统开发人员
-营销系统开发人员找到DBA
-DBA找到运维人员
-运维人员找到机房负责人
-机房负责人找到一只老鼠 ，因为就是它把网线咬断了。
-分布式|微服务架构所带来的问题
-定位一个问题怎么会如此复杂？竟然动用了公司一半......
+讲个找BUG的故事：客户打电话给客服说：“优惠券使用不了”。客服告诉运营人员运营打电话给技术负责人技术负责人通知会员系统开发人员会员找到营销系统开发人员营销系统开发人员找到DBADBA找到运维人员运维人员找到机房负责人机房负责人找到一只老鼠 ，因为就是它把网线咬断了。
+分布式|微服务架构所带来的问题定位一个问题怎么会如此复杂？竟然动用了公司一半以上的职能部门。但其实......
         </div>
     </a>
     
@@ -290,9 +279,7 @@ DBA找到运维人员
             This is hexo theme Demo.
         </h3>
         <div class="post-content-preview">
-            ElasticSearch第一天
-学习目标：
-
+            ElasticSearch第一天学习目标：
 能够理解ElasticSearch的作用
 能够安装ElasticSearch服务
 能够理解ElasticSearch的相关概念
@@ -301,8 +288,7 @@ DBA找到运维人员
 能够使用ElasticSearch集成IK分词器
 能够完成es集群搭建
 
-第一章 ElasticSearch简介
-1.1......
+第一章 ElasticSearch简介1.1 什么......
         </div>
     </a>
     
@@ -338,18 +324,7 @@ DBA找到运维人员
             Liunx基本命令
         </h3>
         <div class="post-content-preview">
-            一 基本命令
-1.1 关机和重启
-关机
-shutdown -h now        立刻关机
-shutdown -h 5        5分钟后关机
-poweroff            立刻关机
-重启
-shutdown -r now        立刻重启
-shutdown -r 5        5分钟后重启
-reboot                立刻重启
-1.2 帮助命令
-–......
+            一 基本命令1.1 关机和重启关机    shutdown -h now        立刻关机    shutdown -h 5        5分钟后关机    poweroff            立刻关机重启    shutdown -r now        立刻重启    shutdown -r 5        5分钟后重启    reboot                ......
         </div>
     </a>
     
@@ -664,21 +639,6 @@ reboot                立刻重启
 <img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -212,44 +212,23 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="一-分布式调用链系统概述"><strong>一、分布式调用链系统概述</strong></h2>
-<hr>
-<h3 id="讲个找bug的故事"><strong>讲个找BUG的故事：</strong></h3>
-<p>客户打电话给客服说：“优惠券使用不了”。<br>
-客服告诉运营人员<br>
-运营打电话给技术负责人<br>
-技术负责人通知会员系统开发人员<br>
-会员找到营销系统开发人员<br>
-营销系统开发人员找到DBA<br>
-DBA找到运维人员<br>
-运维人员找到机房负责人<br>
-机房负责人找到一只老鼠 ，因为就是它把网线咬断了。</p>
-<p><strong>分布式|微服务架构所带来的问题</strong><br>
-定位一个问题怎么会如此复杂？竟然动用了公司一半以上的职能部门。但其实这只是当我系统变成分布式之后，当我们把服务进行细粒度的拆份之后的一小部分问题，更多问题在哪里？比如：</p>
+                <h2 id="一-分布式调用链系统概述"><a href="#一、分布式调用链系统概述" class="headerlink" title="一、分布式调用链系统概述"></a><strong>一、分布式调用链系统概述</strong></h2><hr>
+<h3 id="讲个找bug的故事"><a href="#讲个找BUG的故事：" class="headerlink" title="讲个找BUG的故事："></a><strong>讲个找BUG的故事：</strong></h3><p>客户打电话给客服说：“优惠券使用不了”。<br>客服告诉运营人员<br>运营打电话给技术负责人<br>技术负责人通知会员系统开发人员<br>会员找到营销系统开发人员<br>营销系统开发人员找到DBA<br>DBA找到运维人员<br>运维人员找到机房负责人<br>机房负责人找到一只老鼠 ，因为就是它把网线咬断了。</p>
+<p><strong>分布式|微服务架构所带来的问题</strong><br>定位一个问题怎么会如此复杂？竟然动用了公司一半以上的职能部门。但其实这只是当我系统变成分布式之后，当我们把服务进行细粒度的拆份之后的一小部分问题，更多问题在哪里？比如：</p>
 <ol>
 <li>开发成本会增加。</li>
 <li>测试成本增加。</li>
 <li>产品迭代周期将变长。</li>
 <li>运维成本增加。</li>
 </ol>
-<p><strong>产生这些问题的原因是什么</strong><br>
-这是为什么？这跟我们的了解不一样呀，<br>
-在我们固有的认知里面，社会化分工越精细，专业化程度越高，产能就越高么？<br>
-一台汽车平均将近3万个零部件，来自全球各个供应商。你可能会说,汽车这种大物件太复杂了，一家公司搞不定，必须协作。那我们就说一个小的，一次性打火机不复杂吧，在浙江温州 有一个打火机村，一个小小的打火机生产，是由20多个厂家协作完成，有的做打火机燃料有的做点火器。<br>
-好，我们在反观软件行业， 你见过哪家某个系统是由十几家企业协作完成的么？你觉得淘宝的电商系统可以让日本人去开发 购物车模块、让法国人实现评论模块、让印度人去实现下单功能、美国人实现商品模块，最后在由中国人拼装整合，可能嘛？</p>
+<p><strong>产生这些问题的原因是什么</strong><br>这是为什么？这跟我们的了解不一样呀，<br>在我们固有的认知里面，社会化分工越精细，专业化程度越高，产能就越高么？<br>一台汽车平均将近3万个零部件，来自全球各个供应商。你可能会说,汽车这种大物件太复杂了，一家公司搞不定，必须协作。那我们就说一个小的，一次性打火机不复杂吧，在浙江温州 有一个打火机村，一个小小的打火机生产，是由20多个厂家协作完成，有的做打火机燃料有的做点火器。<br>好，我们在反观软件行业， 你见过哪家某个系统是由十几家企业协作完成的么？你觉得淘宝的电商系统可以让日本人去开发 购物车模块、让法国人实现评论模块、让印度人去实现下单功能、美国人实现商品模块，最后在由中国人拼装整合，可能嘛？</p>
 <p>我想一下原因 其实就是在于三个字：“标准化”，在刚说的汽车3万个零件，每个都有其标准化规格，所以才能够顺利的拼装成品，但软件你能标准化至表格这么细么，我们连开发个接口都没有指定标准。接口命名、参数、结构等没有指定的标准，最多就是一个规范。</p>
 <p>没有标准化，不能分工协作，那怎么实现软件的大规模生产呢？管理办法升级加工具升级，管理办法是类似于敏捿开发、工程师文化建设、开发形为准则。另外一个就是工具：像自动化构建、自动化部署、自动化运维、自动化扩容等、线上监控等。还有调用链追踪都属于工具</p>
-<h3 id="调用链追踪工具的作用"><strong>调用链追踪工具的作用</strong></h3>
-<p>分析业务实现<br>
-分析用例的性能瓶颈<br>
-决策支持<br>
-定位线上问题</p>
-<h3 id="大厂的调用链系统发展史"><strong>大厂的调用链系统发展史</strong></h3>
-<ul>
+<h3 id="调用链追踪工具的作用"><a href="#调用链追踪工具的作用" class="headerlink" title="调用链追踪工具的作用"></a><strong>调用链追踪工具的作用</strong></h3><p>分析业务实现<br>分析用例的性能瓶颈<br>决策支持<br>定位线上问题</p>
+<h3 id="大厂的调用链系统发展史"><a href="#大厂的调用链系统发展史" class="headerlink" title="大厂的调用链系统发展史"></a><strong>大厂的调用链系统发展史</strong></h3><ul>
 <li>Dapper</li>
 </ul>
-<p><img src="https://uploader.shimo.im/f/Euetw7TAkbYwOHTQ.png!thumbnail" alt="图片"><br>
-关于Dapper论文链接：<a href="https://www.jianshu.com/p/7c719a75df8c" target="_blank" rel="noopener">https://www.jianshu.com/p/7c719a75df8c</a></p>
+<p><img src="https://uploader.shimo.im/f/Euetw7TAkbYwOHTQ.png!thumbnail" alt="图片"><br> 关于Dapper论文链接：<a href="https://www.jianshu.com/p/7c719a75df8c" target="_blank" rel="noopener">https://www.jianshu.com/p/7c719a75df8c</a></p>
 <ul>
 <li>鹰眼</li>
 </ul>
@@ -262,17 +241,13 @@ DBA找到运维人员<br>
 <li>pinpoint</li>
 </ul>
 <p><img src="https://uploader.shimo.im/f/jc3JP1DQCs49ot8H.png!thumbnail" alt="图片"></p>
-<h3 id="图灵调用链项目演示">图灵调用链项目演示：</h3>
-<ul>
+<h3 id="图灵调用链项目演示"><a href="#图灵调用链项目演示：" class="headerlink" title="图灵调用链项目演示："></a>图灵调用链项目演示：</h3><ul>
 <li>[ ] 基本功能</li>
 <li>[ ] 细节功能</li>
-<li>[ ] 搜索功能</li>
+<li>[ ] 搜索功能<h2 id="二-调用链系统的底层实现逻辑"><a href="#二、调用链系统的底层实现逻辑" class="headerlink" title="二、调用链系统的底层实现逻辑"></a>二、调用链系统的底层实现逻辑</h2></li>
 </ul>
-<h2 id="二-调用链系统的底层实现逻辑">二、调用链系统的底层实现逻辑</h2>
 <hr>
-<h3 id="1-核心概念事件">1、核心概念：事件</h3>
-<p><strong>一次网络请求的完整过程：</strong><br>
-一张网页，要经历怎样的过程，才能抵达用户面前? 其可分为三个层面</p>
+<h3 id="1-核心概念事件"><a href="#1、核心概念：事件" class="headerlink" title="1、核心概念：事件"></a>1、核心概念：事件</h3><p><strong>一次网络请求的完整过程：</strong><br>一张网页，要经历怎样的过程，才能抵达用户面前? 其可分为三个层面</p>
 <ol>
 <li>网络通信传输层</li>
 <li>负载均衡层</li>
@@ -298,49 +273,31 @@ DBA找到运维人员<br>
 <li>发生了什么事件？</li>
 <li>这个事件由谁触发？</li>
 </ol>
-<p>所以调用链系统的核心概念即是事件。关于事件及其属性说明如下：<br>
-**事件：**请求处理过程当中的具体动作如：WEB 请求、方法调用、SQL执行、远程调用、消息发送。<br>
-**节点：**请求所经过的系统节点，即事件的空间属性。如：应用系统、数据库实例、缓存节点、外部服务等<br>
-**时间：**事件的开始和结束时间<br>
-**关系：**事件与上一个事件关系<br>
-**触发:  **可以是用户触发、定时器触发、远程调用触发<br>
-<img src="https://uploader.shimo.im/f/jlTaAerw9i4WSjQl.png!thumbnail" alt="图片"></p>
+<p>所以调用链系统的核心概念即是事件。关于事件及其属性说明如下：<br><strong>事件：</strong>请求处理过程当中的具体动作如：WEB 请求、方法调用、SQL执行、远程调用、消息发送。<br><strong>节点：</strong>请求所经过的系统节点，即事件的空间属性。如：应用系统、数据库实例、缓存节点、外部服务等<br><strong>时间：</strong>事件的开始和结束时间<br><strong>关系：</strong>事件与上一个事件关系<br><strong>触发:  </strong>可以是用户触发、定时器触发、远程调用触发<br><img src="https://uploader.shimo.im/f/jlTaAerw9i4WSjQl.png!thumbnail" alt="图片"></p>
 <p>思考题：一次Http请求事件 包含哪些具体属性及子事件。</p>
-<h3 id="2-事件捕捉"><strong>2、事件捕捉</strong></h3>
-<p>我们如何采集这些事件的数据呢？采集数据的方式即为<strong>事件捕捉</strong>，有已下四种方式：</p>
+<h3 id="2-事件捕捉"><a href="#2、事件捕捉" class="headerlink" title="2、事件捕捉"></a><strong>2、事件捕捉</strong></h3><p>我们如何采集这些事件的数据呢？采集数据的方式即为<strong>事件捕捉</strong>，有已下四种方式：</p>
 <ol>
 <li>硬编码埋点捕捉</li>
 <li>AOP埋点捕捉</li>
 <li>公共组件埋点捕捉</li>
-<li>字节码插桩捕捉</li>
-</ol>
-<h3 id="3-事件串联"><strong>3、事件串联</strong></h3>
-<p>如果只给你一断SQL 而不给出这段SQL的调用上下文，基于此你做出的判断是非常有限的，无法得知SQL是哪个用例触发的？什么时候触发的。避免单个事件独立存在，就需要我们把事物进行串联:</p>
-<ol>
+<li>字节码插桩捕捉<h3 id="3-事件串联"><a href="#3、事件串联" class="headerlink" title="3、事件串联"></a><strong>3、事件串联</strong></h3>如果只给你一断SQL 而不给出这段SQL的调用上下文，基于此你做出的判断是非常有限的，无法得知SQL是哪个用例触发的？什么时候触发的。避免单个事件独立存在，就需要我们把事物进行串联:</li>
 <li>所有事件都关联到同一个调用。</li>
 <li>事件与子事件基于层级关展现。</li>
 </ol>
-<p>为了到达这两个目的地，几乎所有的调用链系统都会有以下两个属性：<br>
-**traceID:**在整个系统中唯一，该值相同的事件表示同一次调用。<br>
-**eventID:**在一次调用中唯一、并展出事件的层级关系</p>
-<p><img src="https://uploader.shimo.im/f/asNktmaQNAEEuMJf.png!thumbnail" alt="图片"><br>
-其串联的实现过程如下：</p>
+<p>为了到达这两个目的地，几乎所有的调用链系统都会有以下两个属性：<br><strong>traceID:</strong>在整个系统中唯一，该值相同的事件表示同一次调用。<br><strong>eventID:</strong>在一次调用中唯一、并展出事件的层级关系</p>
+<p><img src="https://uploader.shimo.im/f/asNktmaQNAEEuMJf.png!thumbnail" alt="图片"><br>其串联的实现过程如下：</p>
 <ol>
-<li>在调用的初始事件生成 TraceId 与EventId 并保存于ThreadLocal</li>
+<li>在调用的初始事件生成 TraceId 与EventId 并保存于ThreadLocal </li>
 <li>当下一个事件发生的时候 直接从ThredLocal取出 TraceId  与EventId进行自增并保存。</li>
 <li>有时事件是跨节点的，这时就需要在远程调用的时候一并将TraceID 与EventId 一并传送过去并保存自ThreadLocal。</li>
 </ol>
 <p><img src="https://images-cdn.shimo.im/6CqOOHDgovIvuhap/image.png!thumbnail" alt="图片"></p>
 <p>trackId与eventId 基于远程调用的传递</p>
 <p><img src="https://images-cdn.shimo.im/oLeC7AetvY0djP0p/image.png!thumbnail" alt="图片"></p>
-<h3 id="4-事件的开始与结束"><strong>4、事件的开始与结束</strong></h3>
-<p>我们知道一个事件是一个时间段内系统执行的若干动作，所以对于事件捕捉必须包含开启监听和结束监听两个动作？如果一个事件在一个方法内完成的，这个问题是比较好解决的，我们只要在方法的开始创建一个Event对象，在方法结束时调用该对像的close 方法即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void addUser()&#123;</span><br><span class="line">  // 方法的开始处，开启一个监听</span><br><span class="line">  Event event=new Event();</span><br><span class="line">    //业务代码执行</span><br><span class="line">    .....</span><br><span class="line">    </span><br><span class="line">    .....</span><br><span class="line">  // 方法的结束处，关闭一个监听</span><br><span class="line">  event.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但如果一个事件的开始和结束触发分布在多个对象或方法当中，情况就会变得异常复杂。<br>
-比如一个JDBC执行事件，应该是在构建 Statement 时开始，在Statement 关闭时结束。怎样把这两个触发动作对应到同一个事件当中去呢（即传递Event对象）？在这里的解决办法是对返回结果进行动态代理，把Event放置到代理对象的属性当中，以达到付递的目标。当这个方法只是适应JDBC这一个场景，其它场景需要重新设计Event 传递路径，目前还没有通用的解决办法。</p>
+<h3 id="4-事件的开始与结束"><a href="#4、事件的开始与结束" class="headerlink" title="4、事件的开始与结束"></a><strong>4、事件的开始与结束</strong></h3><p>我们知道一个事件是一个时间段内系统执行的若干动作，所以对于事件捕捉必须包含开启监听和结束监听两个动作？如果一个事件在一个方法内完成的，这个问题是比较好解决的，我们只要在方法的开始创建一个Event对象，在方法结束时调用该对像的close 方法即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void addUser()&#123;</span><br><span class="line">  // 方法的开始处，开启一个监听</span><br><span class="line">  Event event=new Event();</span><br><span class="line">    //业务代码执行</span><br><span class="line">    .....</span><br><span class="line">    </span><br><span class="line">    .....</span><br><span class="line">  // 方法的结束处，关闭一个监听</span><br><span class="line">  event.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但如果一个事件的开始和结束触发分布在多个对象或方法当中，情况就会变得异常复杂。<br>比如一个JDBC执行事件，应该是在构建 Statement 时开始，在Statement 关闭时结束。怎样把这两个触发动作对应到同一个事件当中去呢（即传递Event对象）？在这里的解决办法是对返回结果进行动态代理，把Event放置到代理对象的属性当中，以达到付递的目标。当这个方法只是适应JDBC这一个场景，其它场景需要重新设计Event 传递路径，目前还没有通用的解决办法。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// JDBC事件开始</span><br><span class="line">Connection.prepareStatement(String sql);</span><br><span class="line">//JDBC 事件结束</span><br><span class="line">PreparedStatement.close();</span><br></pre></td></tr></table></figure>
-<h2 id="三-项目部署与启动"><strong>三、项目部署与启动</strong></h2>
-<hr>
+<h2 id="三-项目部署与启动"><a href="#三、项目部署与启动" class="headerlink" title="三、项目部署与启动"></a><strong>三、项目部署与启动</strong></h2><hr>
 <p><strong>概要：</strong></p>
 <ol>
 <li>项目整体架构介绍</li>
@@ -353,11 +310,10 @@ DBA找到运维人员<br>
 <p><strong>架构目标：</strong></p>
 <ol>
 <li>基本功能：实现监控数据采集上报与展示</li>
-<li>可扩展性**：**能够非常轻松灵活的添加新的采集器</li>
+<li>可扩展性<strong>：</strong>能够非常轻松灵活的添加新的采集器</li>
 <li>可运维：Agent自动更新、异常日志输出</li>
 </ol>
-<p><strong>基本功能</strong><br>
-<img src="https://uploader.shimo.im/f/MI105ylJAyk91nQb.png!thumbnail" alt="图片"></p>
+<p><strong>基本功能</strong><br><img src="https://uploader.shimo.im/f/MI105ylJAyk91nQb.png!thumbnail" alt="图片"></p>
 <p>全局架构说明：</p>
 <ol>
 <li>监听器基于埋点采集，接口、SQL、Servlet等响应信息</li>
@@ -365,23 +321,11 @@ DBA找到运维人员<br>
 <li>监控中心实时上传至ElasticSearch</li>
 <li>可视化展示调用链详情</li>
 </ol>
-<p><strong>可扩展性：</strong><br>
-插件机制、灵活自定义扩展，其过程见下图。<br>
-<img src="https://images-cdn.shimo.im/1OSHFxxpKQcNtlq0/image.png!thumbnail" alt="图片"></p>
-<p><strong>可运维:</strong><br>
-插件自动更新.</p>
-<h3 id><img src="https://images-cdn.shimo.im/ozlsVUkkObM9wtzP/image.png!thumbnail" alt="图片"></h3>
-<h3 id="2-项目工程结构介绍">2、项目工程结构介绍</h3>
-<p>项目整体分为两个工程：<br>
-1、Agent 工程：<br>
-git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent</a><br>
-**2、**server 工程：<br>
-git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-service" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-service</a><br>
-项目依懒：mysql、ElasticSearch</p>
-<p>Agent项目工程结构：<br>
-<img src="https://images-cdn.shimo.im/Cyb6tuUNppAz5nbg/image.png!thumbnail" alt="图片"></p>
-<h3 id="3项目部署启动演示">3.项目部署启动演示</h3>
-<ul>
+<p><strong>可扩展性：</strong><br> 插件机制、灵活自定义扩展，其过程见下图。<br><img src="https://images-cdn.shimo.im/1OSHFxxpKQcNtlq0/image.png!thumbnail" alt="图片"></p>
+<p><strong>可运维:</strong><br>插件自动更新.</p>
+<h3 id><a href="#" class="headerlink" title></a><img src="https://images-cdn.shimo.im/ozlsVUkkObM9wtzP/image.png!thumbnail" alt="图片"></h3><h3 id="2-项目工程结构介绍"><a href="#2、项目工程结构介绍" class="headerlink" title="2、项目工程结构介绍"></a>2、项目工程结构介绍</h3><p>项目整体分为两个工程：<br>1、Agent 工程：<br>git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent</a><br><strong>2、</strong>server 工程：<br>git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-service" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-service</a><br>项目依懒：mysql、ElasticSearch</p>
+<p>Agent项目工程结构：<br><img src="https://images-cdn.shimo.im/Cyb6tuUNppAz5nbg/image.png!thumbnail" alt="图片"></p>
+<h3 id="3项目部署启动演示"><a href="#3-项目部署启动演示" class="headerlink" title="3.项目部署启动演示"></a>3.项目部署启动演示</h3><ul>
 <li>[ ] 启动服务端</li>
 <li>[ ] 启动测试客户端</li>
 </ul>
@@ -389,10 +333,10 @@ git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-service" 
 <ol>
 <li>从源码中心<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent/src/master/bin/agent.zip" target="_blank" rel="noopener">http://git.tulingxueyuan.cn/java-vip/tuling-trace-agent/src/master/bin/agent.zip下载agent.zip</a> 至应用系统</li>
 <li>解压缩 agent.zip</li>
-<li>添加jvm 参数 -javaagent: &lt;cbt-agent-bootstrap-1.0-SNAPSHOT.jar 路径&gt;</li>
-<li>重启应用,观察你的应用日志，如果发现以下日志代表启动成功了</li>
+<li>添加jvm 参数 -javaagent: <cbt-agent-bootstrap-1.0-snapshot.jar 路径></cbt-agent-bootstrap-1.0-snapshot.jar></li>
+<li>重启应用,观察你的应用日志，如果发现以下日志代表启动成功了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[2018-06-12:10:32:42]加载藏宝图配置文件来自G:\git\cbt-agent\out\conf\cbt.properties</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务登陆成功!</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务启动成功!</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[2018-06-12:10:32:42]加载藏宝图配置文件来自G:\git\cbt-agent\out\conf\cbt.properties</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务登陆成功!</span><br><span class="line">[2018-06-12:10:32:43]藏宝图服务启动成功!</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -699,21 +643,6 @@ git地址：<a href="http://git.tulingxueyuan.cn/java-vip/tuling-trace-service" 
 <img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
