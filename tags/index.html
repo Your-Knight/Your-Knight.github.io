@@ -217,13 +217,13 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/article/ElasticSearch第一天/">
+                     <a href="/article/Liunx常用命令/">
                         <h2 class="post-title">
-                            [Hexo] Theme HuWeihuang
+                            [Liunx] 基本命令
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                This is hexo theme Demo.
+                                Liunx基本命令
                             </h3>
                         
                     </a>
@@ -236,13 +236,13 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/article/Liunx常用命令/">
+                     <a href="/article/ElasticSearch第一天/">
                         <h2 class="post-title">
-                            [Liunx] 基本命令
+                            [Hexo] Theme HuWeihuang
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                Liunx基本命令
+                                This is hexo theme Demo.
                             </h3>
                         
                     </a>
@@ -442,6 +442,21 @@
 <img src="https://Your-Knight.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
