@@ -7,8 +7,8 @@
     </url>
 
     <url>
-        <loc>https://Your-Knight.com/article/ElasticSearch%E7%AC%AC%E4%B8%80%E5%A4%A9/</loc>
-        <lastmod>2021-06-20T23:02:16.735Z</lastmod>
+        <loc>https://Your-Knight.com/article/maven%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+        <lastmod>2021-06-21T00:32:19.280Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -16,7 +16,15 @@
 
     <url>
         <loc>https://Your-Knight.com/article/Liunx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-        <lastmod>2021-06-20T22:57:57.070Z</lastmod>
+        <lastmod>2021-06-20T23:58:19.783Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://Your-Knight.com/article/ElasticSearch%E7%AC%AC%E4%B8%80%E5%A4%A9/</loc>
+        <lastmod>2021-06-20T23:02:16.735Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

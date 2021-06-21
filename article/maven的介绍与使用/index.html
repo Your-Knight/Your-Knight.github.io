@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - DrunkBlue | Blog
+          [maven]的介绍与使用 - DrunkBlue | Blog
         
     </title>
 
-    <link rel="canonical" href="https://Your-Knight.com/article/hello-world/">
+    <link rel="canonical" href="https://Your-Knight.com/article/maven的介绍与使用/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,7 +71,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/article_header/article_bg.jpg')
+            background-image: url('/img/article_header/article_header.png')
             /*post*/
         
     }
@@ -88,12 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#maven" title="maven">maven</a>
+                            
                         </div>
-                        <h1>Hello World</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>[maven]的介绍与使用</h1>
+                        <h2 class="subheading">Liunx基本命令</h2>
                         <span class="meta">
                             Posted by DrunkBlue on
-                            2021-06-21
+                            2017-09-18
                         </span>
                     </div>
                 
@@ -210,20 +212,42 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h3 id="maven的简单介绍">maven的简单介绍</h3>
+<p>​		Maven是Apache下的项目管理工具，它由纯Java语言开发，可以帮助我们更方便的管理和构建Java项目。</p>
+<p>​		maven的优点</p>
+<p>​		1、  jar包管理：</p>
+<p>​			a)   从Maven中央仓库获取标准的规范的jar包以及相关依赖的jar包，避免自己下载到错误的jar包；</p>
+<p>​			b)   本地仓库统一管理jar包，使jar包与项目分离，减轻项目体积。</p>
+<p>​		2、  maven是跨平台的可以在window、linux上使用。</p>
+<p>​		3、  清晰的项目结构；</p>
+<p>​		4、  多工程开发，将模块拆分成若干工程，利于团队协作开发。</p>
+<p>​		5、  一键构建项目：使用命令可以对项目进行一键构建。</p>
+<h3 id="maven的安装">maven的安装</h3>
+<p>​	maven官网：<a href="https://maven.apache.org/" target="_blank" rel="noopener">https://maven.apache.org/</a></p>
+<p>​	maven仓库：<a href="https://mvnrepository.com/" target="_blank" rel="noopener">https://mvnrepository.com/</a></p>
+<p>​	安装步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、安装jdk</span><br><span class="line">2、从官网中下载对应的版本</span><br><span class="line">3、解压安装，然后配置环境变量，需要配置MAVEN_HOME,并且将bin目录添加到path路径下</span><br><span class="line">4、在命令行中输入mvn -v,看到版本信息表示安装成功</span><br></pre></td></tr></table></figure>
+<h3 id="maven的基本常识">maven的基本常识</h3>
+<p><strong>maven如何获取jar包</strong></p>
+<p>​		maven通过坐标的方式来获取 jar包，坐标组成为：公司/组织（groupId）+项目名（artifactId）+版本（version）组成，可以从互联网，本地等多种仓库源获取jar包</p>
+<p><strong>maven仓库的分类</strong></p>
+<p>​		本地仓库：本地仓库就是开发者本地已经下载下来的或者自己打包所有jar包的依赖仓库，本地仓库路径配置在maven对应的conf/settings.xml配置文件。</p>
+<p>​		私有仓库：私有仓库可以理解为自己公司的仓库，也叫Nexus私服</p>
+<p>​		中央仓库：中央仓库即maven默认下载的仓库地址，是maven维护的</p>
+<p><strong>maven的常用仓库</strong></p>
+<p>​		由于网络访问的原因，在国内如果需要下载国外jar包的时候会受限，因此一般在使用过程中需要修改maven的配置文件，将下载jar包的仓库地址修改为国内的源，常用的是阿里云的mvn仓库，修改配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="maven常用命令">maven常用命令</h3>
+<ul>
+<li>clean：清理编译后的目录</li>
+<li>compile：编译，只编译main目录，不编译test中的代码</li>
+<li>test-compile：编译test目录下的代码</li>
+<li>test：运行test中的代码</li>
+<li>package：打包，将项目打包成jar包或者war包</li>
+<li>install：发布项目到本地仓库，用在打jar包上，打成的jar包可以被其他项目使用</li>
+<li>deploy：打包后将其安装到pom文件中配置的远程仓库</li>
+<li>site：生成站点目录</li>
+</ul>
 
                 
 
@@ -231,10 +255,10 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    
-                        <li class="next">
-                            <a href="/分布式/第一课：调用链系统概述与底层逻辑/" data-toggle="tooltip" data-placement="top" title="分布式调用链系统概述">Next Post &rarr;</a>
+                        <li class="previous">
+                            <a href="/article/ElasticSearch第一天/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme HuWeihuang">&larr; Previous Post</a>
                         </li>
+                    
                     
                 </ul>
 
@@ -277,6 +301,18 @@
             <!-- Tabe of Content -->
             <!-- Table of Contents -->
 
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#maven的简单介绍"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">maven的简单介绍</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#maven的安装"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">maven的安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#maven的基本常识"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">maven的基本常识</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#maven常用命令"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">maven常用命令</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
                 
             <!-- Sidebar Container -->
             <div class="
@@ -291,6 +327,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#maven" title="maven">maven</a>
+                        
                     </div>
                 </section>
                 
